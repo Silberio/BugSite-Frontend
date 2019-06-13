@@ -51,25 +51,38 @@ class APIFetchTest extends React.Component {
     super(props);
 
     this.state = {
-      bugs: ["moth","bug"]
+      bugs: []
     };
   }
 
   componentDidMount() {
-        fetch('http://localhost:8080/bugs/').then(
-      function(response) {
-      return response.json();
-        }).then();
+        fetch('http://localhost:8080/bugs/')
+      .then(response => response.json())
+      .then((result) => {
+
+        this.setState({
+          bugs: result.bug
+        });
+      });
+
   }
 
+
+
+
   render() {
+
     return(
       <div>
         <h3>API Fetch Test</h3>
         <ul>
-          {
-            this.state.bugs.map((bug, i) => (<li>{bug}</li>))
-          }
+          {this.state.bugs.map(bug => 
+            (
+              <li key={bug.id}> 
+              {bug.title} 
+              <p>{bug.description}</p>
+              </li>
+              ))}
         </ul>
       </div>)
   }
