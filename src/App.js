@@ -10,9 +10,6 @@ function App() {
       </header>
       <div className="App-content">
         <h1>CONTENT</h1>
-        <MyComponent />
-      </div>
-      <div className="App-header">
         <APIFetchTest />
       </div>
     </div>
@@ -72,6 +69,7 @@ class APIFetchTest extends React.Component {
 
   render() {
 
+    const baseURL = "./media/"
     return(
       <div>
         <h3>API Fetch Test</h3>
@@ -81,6 +79,7 @@ class APIFetchTest extends React.Component {
               <li key={bug.id}> 
               {bug.title} 
               <p>{bug.description}</p>
+              <img src={require(`${baseURL + bug.imageURL}`)} />
               </li>
               ))}
         </ul>
